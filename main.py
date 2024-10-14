@@ -22,38 +22,36 @@ screen.onkey(fun = snake.up, key = "w")
 
 game_is_on = True
 while game_is_on:
+    
     if snake.head.distance(food) <= 15:
         food.refresh()
         scoreboard.punkte()
         snake.add_segment()
+        scoreboard.save_highscore() 
     if snake.head.xcor() > 295 or snake.head.xcor() < -295 or snake.head.ycor() >= 295 or snake.head.ycor() <= -295:
         game_is_on = False
         scoreboard.game_over()
-        lose = screen.textinput("You lost", "Nochmal Spielen?").lower()
+        
+        # lose = screen.textinput("You lost", "Nochmal Spielen?").lower()
 
-        if lose == "ja" or lose == "j" or lose == "yes" or lose =="y":
-            scoreboard.write_neu()
-            snake.head.goto(0,0)
-            snake.head.seth(0)
-            game_is_on = True
+        # if lose == "ja" or lose == "j" or lose == "yes" or lose =="y":
+        #     scoreboard.write_neu()
+        #     snake.head.goto(0,0)
+        #     snake.head.seth(0)
+        #     game_is_on = True
             
-
     for element in snake.snakes[1:]:
         if snake.head.distance(element) <= 15:
             game_is_on = False
             scoreboard.game_over()
-            lose
+            
+            #lose
             # if lose == "ja" or lose == "j" or lose == "yes" or lose =="y":
             #     scoreboard.write_neu()
             #     snake.head.goto(0,0)
             #     snake.head.seth(0)
             #     game_is_on = True     scoreboard muss noch resettet werden und onkey nach gaame over geht noch nicht 
-                
-                
-                
-    
     screen.update()
     snake.move()
     time.sleep(0.1)
-
 screen.exitonclick()
