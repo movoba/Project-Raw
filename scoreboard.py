@@ -4,8 +4,8 @@ PATH ="Lv 20 Snake Game/Project Raw/data.txt"
 class ScoreBoard(Turtle):
     def __init__(self) -> None:
         super().__init__()
-        self.score = 0
         self. highscore = 0
+        self.score = 0
         with open("data.txt") as file:
             inhalt = file.read()
             if inhalt:
@@ -32,5 +32,6 @@ class ScoreBoard(Turtle):
     def save_highscore(self):
         if self.score > self.highscore:
             self.highscore = self.score
+            self.write_neu()
         with open("data.txt", mode="w") as file:
             file.write(f"{self.highscore}")
